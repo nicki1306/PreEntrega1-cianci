@@ -34,24 +34,50 @@ console.log(cantidad)
 
 }
 
-comprar()
+//comprar()
 
-const Zapatillas = function (color,talles){
+let colorusuario
+let talle
+
+colorusuario = prompt("ingrese color")
+talle = prompt("ingrese talle")
+
+const tallesGenerales = [35,36,37,38,39,40]
+
+const Zapatillas = function (color,talles,cantidad){
     this.color = color
-    this.talles= talles
+    this.talles = talles
+    this.cantidad = cantidad
 
 }
 
 
-let zapatillas1 = new zapatillas1 ("rojo, 35,36,37,38,39,40")
-let zapatillas2 = new zapatillas2 ("azul, 35,36,37,38,39,40")
-let zapatillas3 = new zapatillas3 ("gris, 35,36,37,38,39,40")
-let zapatillas4 = new zapatillas4 ("negro, 35,36,37,38,39,40")
-let zapatillas5 = new zapatillas5 ("blanco, 35,36,37,38,39,40")
-let zapatillas6 = new zapatillas6 ("amarillo, 35,36,37,38,39,40")
+let Zapatillas1 = new Zapatillas("rojo", tallesGenerales, 10)
+let Zapatillas2 = new Zapatillas("azul", tallesGenerales, 25)
+let Zapatillas3 = new Zapatillas("gris", tallesGenerales, 32)
+let Zapatillas4 = new Zapatillas("negro", tallesGenerales, 12)
+let Zapatillas5 = new Zapatillas("blanco", tallesGenerales, 18)
+let Zapatillas6 = new Zapatillas("amarillo", tallesGenerales, 46)
 
-let lista [zapatillas1,zapatillas2,zapatillas3,zapatillas4,zapatillas5,zapatillas6]
+let lista = [Zapatillas1,Zapatillas1,Zapatillas2,Zapatillas3,Zapatillas4,Zapatillas5,Zapatillas6]
 
-function buscarzapatillas(){
+const countZapatillas=(listacontar)=>{
+let cantidad=0
+listacontar.forEach(z => {
+    cantidad += z.cantidad
+});
+return cantidad;
+}
+
+const filterZapatillas = (color,talle,listazapatillas)=>{
+    let resultado = listazapatillas.filter(zapatilla=>{
+                                                        console.log(color,zapatilla.color)
+                                                        const found = zapatilla.talles.find((t) => t == talle);
+                                                        return((color===zapatilla.color)&&(typeof found!=="undefined"))
+                                                        })
+    console.log("esta disponible", resultado)
+    let total= countZapatillas(resultado)
+    console.log("la cantidad de zapatillas para el color " + color + "es " + total)
+    }
     
-}
+    filterZapatillas(colorusuario,talle,lista)
