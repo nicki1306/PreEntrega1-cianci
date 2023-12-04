@@ -89,3 +89,38 @@ if(localStorage.getItem(lista)){
     lista = lista
 }
 
+function filterZapatillas(){
+    const body = document.querySelector("body")
+    const input = document.getElementById("Productos").Value
+    const palabraClave = input.trim().toUpperCase()
+    const resultado = lista.filter( (Zapatillas)=> zapatilla.nombre.toUpperCase().include(pàlabraClave))
+}
+
+if(resultado.lenght > 0) {
+    const container = document.createElement("div")
+
+    resultado.forEach( (zapatillas)=> {
+        const card = document.createElement("div")
+
+        const nombre = document.createElement("p")
+        nombre.textContent = zapatillas.nombre
+        card.appendChild(nombre)
+
+        const color = document.createElement("p")
+        color.textContent = zapatillas.color
+        card.appendChild(color)
+
+        const talle = document.createElement("p")
+        color.textContent = zapatillas.talle
+        card.appendChild(talle)
+
+        container.appendChild(card)
+
+
+    })
+
+    body.appendChild(container)
+}
+
+const filtrarbtn = document.getElementById(agregar)
+filtrarbtn.addEventListener("click", filterZapatillas)
