@@ -36,30 +36,23 @@ function comprar() {
 
 //comprar()
 
-let colorusuario
-let talle
-
-colorusuario = prompt("ingrese color")
-talle = prompt("ingrese talle")
-
-const tallesGenerales = [35, 36, 37, 38, 39, 40]
-
-const Zapatillas = function (color, talles, cantidad) {
+const Zapatillas = function (nombre, color, talles, cantidad) {
+    this.nombre = nombre
     this.color = color
     this.talles = talles
     this.cantidad = cantidad
-
 }
 
+const tallesGenerales = [35, 36, 37, 38, 39, 40]
 
-let Zapatillas1 = new Zapatillas("rojo", tallesGenerales, 10)
-let Zapatillas2 = new Zapatillas("azul", tallesGenerales, 25)
-let Zapatillas3 = new Zapatillas("gris", tallesGenerales, 32)
-let Zapatillas4 = new Zapatillas("negro", tallesGenerales, 12)
-let Zapatillas5 = new Zapatillas("blanco", tallesGenerales, 18)
-let Zapatillas6 = new Zapatillas("amarillo", tallesGenerales, 46)
+let producto1 = new Zapatillas("vans", "rojo", tallesGenerales, 10)
+let producto2 = new Zapatillas("adidas", "azul", tallesGenerales, 25)
+let producto3 = new Zapatillas("nike", "gris", tallesGenerales, 32)
+let producto4 = new Zapatillas("reebook", "negro", tallesGenerales, 12)
+let producto5 = new Zapatillas("puma", "amarillo", tallesGenerales, 46)
 
-let lista = [Zapatillas1, Zapatillas1, Zapatillas2, Zapatillas3, Zapatillas4, Zapatillas5, Zapatillas6]
+let lista = [producto1, producto2, producto3, producto4, producto5]
+
 
 const countZapatillas = (listacontar) => {
     let cantidad = 0
@@ -68,59 +61,43 @@ const countZapatillas = (listacontar) => {
     });
     return cantidad;
 }
-//recibe color y talle y la lista de zapatillas
-//devuelve el valor del array disponible junto con el total para este color
-const filterZapatillas = (color, talle, listazapatillas) => {
-    let resultado = listazapatillas.filter(zapatilla => {
-        console.log(color, zapatilla.color)
-        const found = zapatilla.talles.find((t) => t == talle);
-        return ((color === zapatilla.color) && (typeof found !== "undefined"))
-    })
-    console.log("esta disponible", resultado)
-    let total = countZapatillas(resultado)
-    console.log("la cantidad de zapatillas para el color " + color + "es " + total)
+const filterZapatillas = (listaproductos) => {
+    const palabraclave = document.getElementById("buscar").value
+    filtrarP = listaproductos.filter((zapatillas) => zapatillas.nombre.includes(palabraclave))
+
+    localStorage.setItem("resultado", JSON.stringify(filtrarP))
+    listarender()
+};
+
+const listarender = () => {
+    let resultado = JSON.parse(localStorage.getItem("resultado"))
+    if (resultado.length > 0) {
+        const container = document.createElement("div")
+        container.classList.add("container")
+        const mostrarlista = document.getElementById("mostrarlista")
+        mostrarlista.appendChild(container)
+
+        resultado.forEach(zapatilla => {
+            const card = document.createElement("div")
+            card.classList.add("card")
+            const nombre = document.createElement("h3")
+            nombre.textContent = zapatilla.nombre
+            card.appendChild(nombre)
+            const color = document.createElement("h4")
+            color.textContent = zapatilla.color
+            card.appendChild(color)
+            const talle = document.createElement("h5")
+            talle.textContent = zapatilla.talles
+            card.appendChild(talle)
+
+            container.appendChild(card)
+        })
+    }
 }
 
-//filterZapatillas(colorusuario, talle, lista)
 
-if(localStorage.getItem(lista)){
-    lista = JSON.parse(localStorage.getItem(Zapatillas))
-}else{
-    lista = lista
-}
-
-function filterZapatillas(){
-    const body = document.querySelector("body")
-    const input = document.getElementById("Productos").Value
-    const palabraClave = input.trim().toUpperCase()
-    const resultado = lista.filter( (Zapatillas)=> zapatilla.nombre.toUpperCase().include(pàlabraClave))
-}
-
-if(resultado.lenght > 0) {
-    const container = document.createElement("div")
-
-    resultado.forEach( (zapatillas)=> {
-        const card = document.createElement("div")
-
-        const nombre = document.createElement("p")
-        nombre.textContent = zapatillas.nombre
-        card.appendChild(nombre)
-
-        const color = document.createElement("p")
-        color.textContent = zapatillas.color
-        card.appendChild(color)
-
-        const talle = document.createElement("p")
-        color.textContent = zapatillas.talle
-        card.appendChild(talle)
-
-        container.appendChild(card)
+const filtrarbtn = document.getElementById("agregar")
+filtrarbtn.classList.add("button")
+filtrarbtn.addEventListener("click", () => { filterZapatillas(lista) })
 
 
-    })
-
-    body.appendChild(container)
-}
-
-const filtrarbtn = document.getElementById(agregar)
-filtrarbtn.addEventListener("click", filterZapatillas)

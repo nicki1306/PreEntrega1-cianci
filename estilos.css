@@ -2,6 +2,15 @@
 
 body{
     background-color: cadetblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
 }
 
 h1{
@@ -12,8 +21,40 @@ h1{
     margin-bottom: 10px;
     display: flex;
     justify-content: center;
+    font-size: 30px;
 }
 
-p{
+.card{
+    font-size: 40px;
+    background-color: rgba(255, 255, 255, 0.284);
+    padding: 16px;
+}
+
+.button{
+    border-radius: 3px;
+    margin: 24px;
+    padding: 10px;
+    font-size: 15px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: blue;
+    color: white;
+    align-items: center;
+    display: flex;
     justify-content: center;
+    border: none;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 5px;
+    background-image: url("imagenes/sandals-587185_1280.jpg");
+    background-size: cover;
+    padding: 10px;
+    margin: 60px;
+    width: 300px;
+    height: 300px;
+    overflow: hidden;
 }
