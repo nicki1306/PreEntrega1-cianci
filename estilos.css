@@ -87,6 +87,15 @@ justify-content: center;
     border-radius: 5px;
     font-size: 15px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    
 
+}
+
+#carrito{
+    background-color: blue;
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    
 }
