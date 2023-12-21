@@ -5,17 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="estilos.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.min.css" integrity="sha256-ZCK10swXv9CN059AmZf9UzWpJS34XvilDMJ79K+WOgc=" crossorigin="anonymous">
     <title>Document</title>
 </head>
 <body>
-<h1>FumiKo shop online</h1>
 
-<label for="buscar">buscar producto</label>
-<input type="text" id="buscar">
-<button id="agregar">Agregar al carrito</button>
+    <header>
+        <div id="carrito"></div>
+    </header>
+    <main>
 
-<div id="mostrarlista"></div>
+        <h1>FumiKo shop online</h1>
+        <div class="buscador">
+            <label class="buscarp" for="buscar">Buscar Producto</label>
+            <input type="text" id="buscar">
+            <button id="agregar">Agregar al carrito</button>
+        </div>
+
+        <div id="mostrarlista"></div>
+
+
+    </main>
 
 
 
@@ -25,6 +34,5 @@
 
     <Script src="main.js"></Script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.all.min.js" integrity="sha256-IW9RTty6djbi3+dyypxajC14pE6ZrP53DLfY9w40Xn4=" crossorigin="anonymous"></script>
 </body>
 </html>

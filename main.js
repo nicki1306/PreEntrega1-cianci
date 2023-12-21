@@ -101,3 +101,75 @@ filtrarbtn.classList.add("button")
 filtrarbtn.addEventListener("click", () => { filterZapatillas(lista) })
 
 
+const mostrardatosApi = (datos) => {
+    const container = document.createElement("div")
+    container.classList.add("container")
+    const mostrarlista = document.getElementById("mostrarlista")
+    mostrarlista.appendChild(container)
+
+    for (let index = 0; index < 4; index++) {
+        const producto = datos[index];
+        console.log("producto", producto.category)
+        const card = document.createElement("div")
+        card.classList.add("card")
+        const nombre = document.createElement("h3")
+        nombre.innerText = producto.title
+        card.appendChild(nombre)
+        const descripcion = document.createElement("h4")
+        descripcion.innerText = producto.description
+        card.appendChild(descripcion)
+        const precio = document.createElement("h5")
+        precio.innerText = producto.price
+        card.appendChild(precio)
+        const image = document.createElement("img")
+        image.src = producto.image
+        card.appendChild(image)
+        container.appendChild(card)
+        const boton = document.createElement("button")
+        boton.innerText = "Comprar"
+        boton.dataset.id = index
+        boton.addEventListener("click", (e) => {
+            agregarProductos(e.target.dataset.id)
+        })
+        card.appendChild(boton)
+    }
+}
+
+const agregarProductos = (id) => {
+let shop = JSON.parse(localStorage.getItem ("data"))
+    const element = shop[id];
+let carrito = document.getElementById("carrito")
+const p = document.createElement("p")
+p.innerText = element.title
+carrito.appendChild(p)
+Toastify({
+    text: "Producto agregado con exito",
+    duration: 3000,
+    close: true,
+    gravity: "top",
+    position: "right",
+    stopOnFocus: true,
+}).showToast();
+}
+
+
+
+const fetchApi = async () => {
+    fetch(('https://fakestoreapi.com/products'))
+        .then((response) => response.json())
+        .then((data) => {
+            mostrardatosApi(data)
+            console.log("mostrar", data)
+            localStorage.setItem("data", JSON.stringify(data))
+        })
+        .catch(error => {
+            console.log('error: ', error);
+        })
+
+}
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    fetchApi()
+})
+
